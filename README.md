@@ -1,10 +1,12 @@
 # Grande Echelle
 
+Version avec PyTorch, sans Coral
+
 ### Le film n'est pas dans ce dépôt
 Il est disponible à ????
 
 ### Installation
-Testée avec Debian 11 Bullseye
+Testée avec Ubuntu Mate 20.04
 
 Les packages python sont installés dans un virtualenv parce que c'est facile, ça marche bien, c'est la bonne façon de procéder.
 
@@ -21,15 +23,7 @@ The following packages have unmet dependencies:
  librealsense2-utils : Depends: libssl1.1 (>= 1.1.1) but it is not installable
 E: Unable to correct problems, you have held broken packages.
 
-#### Coral
-``` bash
-echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
-sudo apt install curl
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-sudo apt update
-sudo apt install python3-tflite-runtime edgetpu-compiler gasket-dkms
-sudo apt install python3-pycoral libedgetpu1-std
-```
+
 
 #### Python
 Installe tous les packages nécessaires dans un dossier /mon_env dans le dossier /grande_echelle
@@ -43,7 +37,7 @@ sudo apt install python3-venv
 # Installation de l'environnement
 cd /le/dossier/de/grande_echelle/
 # Création du dossier environnement si pas encore créé, l'argument --system-site-packages permet d'utiliser les packages système où est pycoral
-python3 -m venv --system-site-packages mon_env
+python3 -m venv mon_env
 # Activation
 source mon_env/bin/activate
 # Installation des packages, numpy, opencv-python, pyrealsense2, kivy, ...
@@ -61,40 +55,9 @@ Copier coller le lanceur grande-echelle.desktop sur le Bureau
 
 Il faut le modifier avec Propriétés: adapter le chemin à votre cas.
 
-Ce lanceur lance un terminal et l'interface graphique, en autorun.
+Ce lanceur lance un terminal et l'interface graphique,
+et il permet aussi de créer une application au démarrage.
 
-### Reset à la version de GitHub
-
-``` bash
-git fetch origin
-git reset --hard origin/main
-```
-
-### Fichier de configuration
-
-#### Exemple des valeurs par défaut du fichier de config grande_echelle.ini
-
-```
-[camera]
-width_input = 1280
-height_input = 720
-
-[pose]
-brightness = 0.0
-contrast = 0.0
-threshold = 0.71
-around = 1
-
-[histopocene]
-frame_rate_du_film = 25
-film = ICOS.mp4
-profondeur_mini = 2000
-profondeur_maxi = 5000
-largeur_maxi = 1000
-pile_size = 50
-mode_expo = 1
-info = 0
-```
 
 #### Utilisation
 * Bascule full_screen en cours en activant la fenêtre à aggrandir puis:
