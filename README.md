@@ -2,6 +2,11 @@
 
 Version avec PyTorch, sans Coral
 
+### Merci à
+* [Ross Wightman](https://github.com/rwightman)
+* [ rwightman posenet-pytorch](https://github.com/rwightman/posenet-pytorch)
+pour la conversion du modèle PoseNet
+
 ### Le film n'est pas dans ce dépôt
 Il est disponible à ????
 
