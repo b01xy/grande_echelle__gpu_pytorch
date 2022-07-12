@@ -203,9 +203,13 @@ class PosenetRealsense(MyRealSense, MyPosenetPytorch, PosenetRealsenseViewer):
                     self.pose_conn_loop = 0
                     self.pose_loop = 0
 
-                elif data[0] == 'threshold':
-                    print('threshold reçu dans posenet:', data[1])
-                    self.threshold = data[1]
+                elif data[0] == 'threshold_pose':
+                    print('threshold_pose reçu dans posenet:', data[1])
+                    self.threshold_pose = data[1]
+
+                elif data[0] == 'threshold_points':
+                    print('threshold_points reçu dans posenet:', data[1])
+                    self.threshold_points = data[1]
 
                 elif data[0] == 'brightness':
                     print('brightness reçu dans posenet:', data[1])

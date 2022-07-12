@@ -13,7 +13,8 @@ Il est disponible à ????
 ### Installation
 Testée avec Ubuntu Mate 20.04
 
-Les packages python sont installés dans un virtualenv parce que c'est facile, ça marche bien, c'est la bonne façon de procéder.
+[Installation de cuda sur Ubuntu 20.04 Mate](https://ressources.labomedia.org/la_grande_echelle#installation_de_cuda_sur_ubuntu_2004_mate)
+
 
 #### RealSense D 455
 ``` bash
@@ -81,23 +82,6 @@ et il permet aussi de créer une application au démarrage.
 * profondeur_mini = 1200, cale le 0 de la profondeur
 * profondeur_maxi = 4000, limite le maxi
 * largeur_maxi = 1500, limite la plage des x
-
-
-### Version sans Coral et avec PyTorch et Cuda
-
-Nécéssite une carte graphique NVidia un peu patate.
-
-#### Installation sur Xubuntu 22.04
-
-#### Installation de CUDA
-
-#### Installation du driver propriétaire NVidia
- Settings/Additionnal Drivers: installer le driver 515
-
-
-
-
-
 
 ### LICENSE
 
