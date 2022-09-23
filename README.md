@@ -32,12 +32,6 @@ sudo add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo foca
 sudo apt install librealsense2-dkms librealsense2 librealsense2-utils
 ```
 
-librealsense2-utils non instalable
-The following packages have unmet dependencies:
- librealsense2-utils : Depends: libssl1.1 (>= 1.1.1) but it is not installable
-E: Unable to correct problems, you have held broken packages.
-
-
 #### Python
 Installe tous les packages nécessaires dans un dossier /mon_env dans le dossier /grande_echelle
 ``` bash
