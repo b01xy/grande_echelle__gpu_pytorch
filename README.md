@@ -8,13 +8,21 @@ Version avec PyTorch, sans Coral
 pour la conversion du modèle PoseNet
 
 ### Le film n'est pas dans ce dépôt
-Il est disponible à ????
+Le bon film est ICOS-FINAL.mov de 3.7 Go
 
-### Installation
-Testée avec Ubuntu Mate 20.04
+### Installation sur Ubuntu Mate 20.04
+RealSense ne fonctionne pas avec python 3.10, il est impératif d'utiliser Ubuntu 20.04, et pas Ubuntu 22.04
 
-[Installation de cuda sur Ubuntu 20.04 Mate](https://ressources.labomedia.org/la_grande_echelle#installation_de_cuda_sur_ubuntu_2004_mate)
 
+### Installation de CUDA
+``` bash
+sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+sudo add-apt-repository "deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/ /"
+sudo apt-get update
+sudo apt install nvidia-cuda-toolkit
+```
 
 #### RealSense D 455
 ``` bash
@@ -30,22 +38,28 @@ The following packages have unmet dependencies:
 E: Unable to correct problems, you have held broken packages.
 
 
-
 #### Python
 Installe tous les packages nécessaires dans un dossier /mon_env dans le dossier /grande_echelle
 ``` bash
 # Mise à jour de pip
 sudo apt install python3-pip
 python3 -m pip install --upgrade pip
+
 # Installation de venv
 sudo apt install python3-venv
 
 # Installation de l'environnement
 cd /le/dossier/de/grande_echelle/
-# Création du dossier environnement si pas encore créé, l'argument --system-site-packages permet d'utiliser les packages système où est pycoral
+
+# Création du dossier environnement si pas encore créé. 
 python3 -m venv mon_env
+
 # Activation
 source mon_env/bin/activate
+
+# Installation de la version de pytorch nécessaire avec la carte GTX3050
+python3 -m pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
+
 # Installation des packages, numpy, opencv-python, pyrealsense2, kivy, ...
 python3 -m pip install -r requirements.txt
 ```
@@ -54,7 +68,6 @@ python3 -m pip install -r requirements.txt
 ``` bash
 sudo apt install xclip
 ```
-
 
 ### Excécution
 Copier coller le lanceur grande-echelle.desktop sur le Bureau
@@ -72,14 +85,9 @@ et il permet aussi de créer une application au démarrage.
 * En mode expo, démarrage directement en full screen sur le film, pas d'info, pas d'image de capture
 
 #### Explications sur les  paramètres
-
-* brightness et contrast: régler au centre de la plage de bonne détection
 * threshold = 80 seuil de confiance de la détection, plus c'est grand moins il y a d'erreur, mais plus la détection est difficile.
-* around = 1 nombre de pixels autour de la détection pour calcul moyenné de la profondeur, 1 à 3 mais ne change rien
-* frame_rate_du_film = 50, ne pas le modifier
-* film = 'ICOS.mp4' 1920x1080, 25 fps!
 * pile_size = 80 lissage de la profondeur
-* profondeur_mini = 1200, cale le 0 de la profondeur
+* profondeur_mini = 1200, limite le mini
 * profondeur_maxi = 4000, limite le maxi
 * largeur_maxi = 1500, limite la plage des x
 
