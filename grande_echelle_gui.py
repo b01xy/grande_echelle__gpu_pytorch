@@ -214,9 +214,6 @@ class MainScreen(Screen):
 
 class Reglage(Screen):
 
-    brightness = NumericProperty(0)
-    contrast = NumericProperty(0)
-    brightness_contrast_on = NumericProperty(0)
     threshold_pose = NumericProperty(0.8)
     threshold_points = NumericProperty(0.8)
     profondeur_mini = NumericProperty(1500)
@@ -227,17 +224,13 @@ class Reglage(Screen):
     d_mode = NumericProperty(0)
     info = NumericProperty(0)
     mode_expo = NumericProperty(0)
-    slow_size = NumericProperty(0)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         print("Initialisation du Screen Settings")
 
         self.app = App.get_running_app()
-        self.brightness = float(self.app.config.get('pose', 'brightness'))
-        self.contrast = float(self.app.config.get('pose', 'contrast'))
-        self.brightness_contrast_on = int(self.app.config.get('pose',
-                                                    'brightness_contrast_on'))
+
         self.threshold_pose = float(self.app.config.get('pose', 'threshold_pose'))
         self.threshold_points = float(self.app.config.get('pose', 'threshold_points'))
         self.profondeur_mini = int(self.app.config.get('histopocene',
@@ -250,7 +243,6 @@ class Reglage(Screen):
         self.lissage = int(self.app.config.get('histopocene', 'lissage'))
         self.info = int(self.app.config.get('histopocene', 'info'))
         self.mode_expo = int(self.app.config.get('histopocene', 'mode_expo'))
-        self.slow_size = int(self.app.config.get('histopocene', 'slow_size'))
 
         Clock.schedule_once(self.set_switch, 0.5)
 
@@ -263,30 +255,10 @@ class Reglage(Screen):
             self.ids.mode_expo.active = 1
         if self.info == 1:
             self.ids.info.active = 1
-        if self.brightness_contrast_on == 1:
-            self.ids.brightness_contrast_on.active = 1
 
     def do_slider(self, iD, instance, value):
 
         scr = self.app.screen_manager.get_screen('Main')
-
-        if iD == 'brightness':
-            self.brightness = round(value, 2)
-
-            self.app.config.set('pose', 'brightness', self.brightness)
-            self.app.config.write()
-
-            if scr.p1_conn:
-                scr.p1_conn.send(['brightness', self.brightness])
-
-        if iD == 'contrast':
-            self.contrast = round(value, 2)
-
-            self.app.config.set('pose', 'contrast', self.contrast)
-            self.app.config.write()
-
-            if scr.p1_conn:
-                scr.p1_conn.send(['contrast', self.contrast])
 
         if iD == 'threshold_pose':
             # Maj de l'attribut
@@ -362,29 +334,6 @@ class Reglage(Screen):
 
             if scr.p2_conn:
                 scr.p2_conn.send(['lissage', self.lissage])
-
-        if iD == 'slow_size':
-            self.slow_size = int(value)
-
-            self.app.config.set('histopocene', 'slow_size', self.slow_size)
-            self.app.config.write()
-
-            if scr.p2_conn:
-                scr.p2_conn.send(['slow_size', self.slow_size])
-
-    def on_switch_brightness_contrast_on(self, instance, value):
-        scr = self.app.screen_manager.get_screen('Main')
-        if value:
-            value = 1
-        else:
-            value = 0
-        self.brightness_contrast_on = value
-        if scr.p1_conn:
-            scr.p1_conn.send(['brightness_contrast_on', self.brightness_contrast_on])
-        self.app.config.set('pose', 'brightness_contrast_on',
-                                        self.brightness_contrast_on)
-        self.app.config.write()
-        print("brightness_contrast_on =", self.brightness_contrast_on)
 
     def on_switch_info(self, instance, value):
         scr = self.app.screen_manager.get_screen('Main')

@@ -142,10 +142,6 @@ class GrandeEchelle(GrandeEchelleViewer):
         self.depth = 1
         self.histo = [self.profondeur_mini + 1000]*self.pile_size
 
-        # Stockage des 8 dernières valeurs de frame
-        self.slow_size = int(self.config['histopocene']['slow_size'])
-        self.histo_slow = [0]*self.slow_size
-
     def ge_receive_thread(self):
         t = Thread(target=self.ge_receive)
         t.start()
@@ -238,16 +234,6 @@ class GrandeEchelle(GrandeEchelleViewer):
             frame = 0
         if frame >= lenght:
             frame = lenght - 1
-
-        # Pile des 8 dernières valeurs lissées
-        self.histo_slow.append(frame)
-        del self.histo_slow[0]
-        try:
-            frame = int(moving_average( np.array(self.histo_slow),
-                                        self.slow_size - 1,
-                                        type_='simple')[0])
-        except:
-            print("Erreur moving_average depth")
 
         self.frame = frame
 
