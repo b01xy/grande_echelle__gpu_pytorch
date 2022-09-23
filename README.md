@@ -4,7 +4,7 @@ Version avec PyTorch, sans Coral
 
 ### Merci à
 * [Ross Wightman](https://github.com/rwightman)
-* [ rwightman posenet-pytorch](https://github.com/rwightman/posenet-pytorch)
+* [rwightman posenet-pytorch](https://github.com/rwightman/posenet-pytorch)
 pour la conversion du modèle PoseNet
 
 ### Le film n'est pas dans ce dépôt
@@ -68,6 +68,10 @@ python3 -m pip install -r requirements.txt
 ``` bash
 sudo apt install xclip
 ```
+
+### Délai pour éteindre le PC
+[Modification du délai pour éteindre](https://ressources.labomedia.org/la_grande_echelle#modification_du_delai_pour_eteindre_une_debian)
+
 
 ### Excécution
 Copier coller le lanceur grande-echelle.desktop sur le Bureau
