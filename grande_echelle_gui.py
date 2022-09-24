@@ -405,10 +405,7 @@ class Grande_EchelleApp(App):
                                             'height_input': 720})
 
         config.setdefaults( 'pose',
-                                        {   'brightness': 0,
-                                            'contrast': 0,
-                                            'brightness_contrast_on': 0,
-                                            'threshold': 0.80})
+                                        {   'threshold': 0.80})
 
         config.setdefaults( 'histopocene',
                                         {   'frame_rate_du_film': 25,
@@ -420,7 +417,6 @@ class Grande_EchelleApp(App):
                                             'lissage': 11,
                                             'full_screen': 0,
                                             'mode_expo': 0,
-                                            'slow_size': 8,
                                             'raz': 5})
 
         print("self.config peut maintenant être appelé")

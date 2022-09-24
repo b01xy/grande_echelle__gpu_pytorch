@@ -170,16 +170,9 @@ class PosenetRealsense(MyRealSense, MyPosenetPytorch, PosenetRealsenseViewer):
             print("Le dossier des model existe.")
         MyPosenetPytorch.__init__(self, model_dir)
 
-        # Luminosité
-        self.brightness = float(self.config['pose']['brightness'])
-        # Contrast
-        self.contrast = float(self.config['pose']['contrast'])
         # Seuil de confiance de reconnaissance du squelette
         self.threshold_points = float(self.config['pose']['threshold_points'])
         self.threshold_pose = float(self.config['pose']['threshold_pose'])
-
-        # Activation de la fonction qui mange un peu de FPS
-        self.brightness_contrast_on = int(self.config['pose']['brightness_contrast_on'])
 
         # Pour éliminer les trops loing ou trop près, en mêtre
         self.profondeur_maxi = int(self.config['histopocene']['profondeur_maxi'])
@@ -210,14 +203,6 @@ class PosenetRealsense(MyRealSense, MyPosenetPytorch, PosenetRealsenseViewer):
                 elif data[0] == 'threshold_points':
                     print('threshold_points reçu dans posenet:', data[1])
                     self.threshold_points = data[1]
-
-                elif data[0] == 'brightness':
-                    print('brightness reçu dans posenet:', data[1])
-                    self.brightness = data[1]
-
-                elif data[0] == 'contrast':
-                    print('contrast reçu dans posenet:', data[1])
-                    self.contrast = data[1]
 
                 elif data[0] == 'profondeur_mini':
                     print('profondeur_mini reçu dans posenet::', data[1])
@@ -423,8 +408,6 @@ class PosenetRealsense(MyRealSense, MyPosenetPytorch, PosenetRealsenseViewer):
                 "Largeur": self.x,
                 "Threshold Pose": self.threshold_pose,
                 "Threshold Points": self.threshold_points,
-                "Brightness": self.brightness,
-                "Contrast": self.contrast,
                 "Profondeur mini": self.profondeur_mini,
                 "Profondeur maxi": self.profondeur_maxi,
                 "Largeur maxi": self.largeur_maxi}
@@ -468,10 +451,6 @@ class PosenetRealsense(MyRealSense, MyPosenetPytorch, PosenetRealsenseViewer):
 
             color_data = color.as_frame().get_data()
             self.img = np.asanyarray(color_data)
-            if self.brightness_contrast_on:
-                self.img = apply_brightness_contrast(   self.img,
-                                                        self.brightness,
-                                                        self.contrast)
 
             # ############### Posenet
             # # outputs = self.get_outputs(self.img)

@@ -107,16 +107,7 @@ if __name__ == '__main__':
             frame = 0
         if frame >= lenght:
             frame = lenght - 1
-        # # # Pile des 8 dernières valeurs lissées
-        # # self.histo_slow.append(frame)
-        # # del self.histo_slow[0]
-        # # try:
-            # # frame = int(moving_average( np.array(self.histo_slow),
-                                        # # self.slow_size - 1,
-                                        # # type_='simple')[0])
-        # # except:
-            # # print("Erreur moving_average depth")
-        # # print(frame, self.histo_slow)
+
         yf.append(frame)
     y1 = yf[:200]
 
