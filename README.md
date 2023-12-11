@@ -8,7 +8,7 @@ Version avec PyTorch, sans Coral
 pour la conversion du modèle PoseNet
 
 ### Le film n'est pas dans ce dépôt
-Le bon film est ICOS-FINAL.mov de 3.7 Go
+Le bon film est ICOS-FINAL.mov de 3.7 Go, il est disponible à la demande auprès de benjamin ààà labomedia.org
 
 ### Installation sur Ubuntu Mate 20.04
 RealSense ne fonctionne pas avec python 3.10, il est impératif d'utiliser Ubuntu 20.04, et pas Ubuntu 22.04
